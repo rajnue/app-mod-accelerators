@@ -14,7 +14,7 @@ Starter example app with best practices.
 
 ## Running the project
 
-The project includes a live-reloading static server on port `3003` (you can change the port in `package.json`), which will build, launch, and rebuild the app whenever you change application code. To start the server, run:
+The project includes a live-reloading static server on port `3003` (you can change the port in `package.json`), which will build, launch, and rebuild the app whenever you change application code. To start the server, run: `npm start`
 
 ## Testing
 
@@ -43,4 +43,4 @@ CLI template with customization options will be created for easier usability.
 
 ## Contributions
 
-Please ping/mail to raj.champaneriya@neudesic.com or leo.joy@neudesic.com for suggestion/comments/concerns/clarifications.
+Please ping/mail to raj.champaneriya@neudesic.com or leo.joy@neudesic.com for suggestions/comments/concerns/clarifications.
