@@ -32,7 +32,7 @@ The project includes a live-reloading static server on port `3003` (you can chan
 
 VS Code is the editor of choice for most developers on this project. As such, the `.vscode/extensions.json` file specifies recommended plugins for use on the project. VS Code should prompt the user to install these plugins. This notification can be turned off if desired.
 
-## road map
+## Road Map
 
 CLI template with customization options will be created for easier usability.
 
