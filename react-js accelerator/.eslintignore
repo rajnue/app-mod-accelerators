@@ -1,0 +1,7 @@
+build/*
+public/*
+src/serviceWorker.ts
+/webpack.config.js
+/webpack.config.prod.js
+src/environment.js
+src/react-app-env.d.ts

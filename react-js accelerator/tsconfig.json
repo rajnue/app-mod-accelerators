@@ -1,0 +1,37 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "module": "es6",
+    "pretty": true,
+    "sourceMap": true,
+    "importHelpers": true,
+    "strict": true,
+    "noImplicitAny": false,
+    "strictNullChecks": false,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": false,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "forceConsistentCasingInFileNames": true,
+    "esModuleInterop": true,
+    "allowJs": true,
+    "jsx": "react",
+    "baseUrl": "./src",
+    "typeRoots": ["node_modules/@types", "./src/**"],
+    "paths": {
+      "src/constants/*": ["constants/*"],
+      "src/components/*": ["components/*"],
+      "src/pages/*": ["pages/*"],
+      "src/assets/styles/*": ["assets/styles/*"],
+      "src/assets/img/*": ["assets/img/*"]
+    }
+  },
+  "exclude": ["dist", "build", "node_modules", "conf", "json-server"]
+}
