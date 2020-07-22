@@ -10,7 +10,7 @@
     "build": "SET NODE_ENV=development & webpack --config webpack.config.js --mode development",
     "format": "prettier --write \"src/**/*.{ts,tsx,css,scss,js,jsx,json}\"",
     "dist:prod": "webpack --config webpack.config.js --mode production",
-    "test": "jest --coverage",
+    "test": "jest --coverage --passWithNoTests",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx src --color",
     "storybook": "start-storybook -p 9001 -c .storybook",
     "build-storybook": "build-storybook",
