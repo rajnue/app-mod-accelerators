@@ -1,8 +1,8 @@
 {
-  "name": "react-skeleton",
+  "name": "react-js-accelerator",
   "version": "0.1.0",
   "private": true,
-  "description": "React Skeleton- UI",
+  "description": "React JS Accelerator",
   "main": "index.tsx",
   "scripts": {
     "start": "npm run dev",
@@ -39,6 +39,7 @@
     "@storybook/preset-typescript": "3.0.0",
     "@storybook/react": "5.3.19",
     "@types/react-redux": "7.1.8",
+    "@types/react-router-dom": "^5.1.5",
     "axios": "0.19.2",
     "classnames": "2.2.6",
     "clsx": "^1.1.1",

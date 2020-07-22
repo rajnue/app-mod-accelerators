@@ -30,6 +30,7 @@
       "src/components/*": ["components/*"],
       "src/pages/*": ["pages/*"],
       "src/assets/styles/*": ["assets/styles/*"],
+      "src/routes/*": ["routes/*"],
       "src/assets/img/*": ["assets/img/*"]
     }
   },

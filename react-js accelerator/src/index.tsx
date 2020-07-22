@@ -3,12 +3,15 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
 import Routes from './routes';
+import { ThemeProvider } from './assets/styles/theme/theme-provider';
 
 // Placed Context in the root context to act as a global context for all routes
 
 ReactDOM.render(
   <Router>
-    <Routes />
+    <ThemeProvider>
+      <Routes />
+    </ThemeProvider>
   </Router>,
   document.getElementById('root')
 );
