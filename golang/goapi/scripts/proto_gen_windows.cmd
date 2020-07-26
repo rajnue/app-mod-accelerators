@@ -1,0 +1,3 @@
+protoc  --proto_path=api/proto/NeuService/v1 --proto_path=third_party --go_out=plugins=grpc:pkg --validate_out=lang=go:pkg neuservice.proto
+protoc --proto_path=api/proto/NeuService/v1 --proto_path=third_party --grpc-gateway_out=logtostderr=true:pkg neuservice.proto
+protoc --proto_path=api/proto/NeuService/v1 --proto_path=third_party --swagger_out=logtostderr=true:api/swagger/NeuService/v1 neuservice.proto

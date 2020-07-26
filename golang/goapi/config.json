@@ -1,0 +1,8 @@
+{
+    "GRPCPort": "5010",
+    "HTTPPort": "5070",
+    "SwaggerJSONPath": "../../api/swagger/NeuService/v1/neuservice.swagger.json",
+    "SwaggerUIPath": "../../third_party/swagger_ui/",
+    "SwaggerJSONURI": "/v1/swagger.json",
+    "ApplicationName": "NeuService"
+}
