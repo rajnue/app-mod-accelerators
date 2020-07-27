@@ -20,13 +20,13 @@ The project includes a live-reloading static server on port `3003` (you can chan
 
 1. Project will be configured to reject any git commit which violates 95% lines code coverage via unit test.
 
-2. All files under `src\transformers` & `src\store\reducers` folders must have unit tests under `__test_` & mock API response under `_mock_` folder.
+2. All files under `src\transformers` & `src\store\reducers` folders must have unit tests under `__test__` & mock API response under `__mock__` folder.
 
 3. Run `npm test` or use `jest` plugin to run/debug unit tests.
 
 4. AAA - Arrange, Act & Assert pattern is followed to write unit tests.
 
-5. On local git commit, build & test commands are configured to be prevent faulty changes.
+5. On local git commit, build & test commands are configured to prevent faulty changes in repo.
 
 ## VS Code Recommended Plugins
 
@@ -35,6 +35,14 @@ VS Code is the editor of choice for most developers on this project. As such, th
 ## Road Map
 
 CLI template with customization options will be created for easier usability.
+
+## Pending
+
+- Project Component Aliasing
+- Unit Testing
+- JSON Server Setup
+- docker image configuration
+- bitbucket deployment configuration
 
 ## TBD
 
