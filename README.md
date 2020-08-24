@@ -27,9 +27,6 @@ Starter example app with best practices.
   - Open `ios/YourReactProject.xcworkspace` in Xcode
   - Hit `Run` after selecting the desired device
 
-## Testing
-
-1. Pending.
 
 
 ## VS Code Recommended Plugins
@@ -44,6 +41,7 @@ CLI template with customization options will be created for easier usability.
 
 - Unit Testing
 - Styled Components
+- Restructure folders similar to reactjs
 
 
 ## TBD
