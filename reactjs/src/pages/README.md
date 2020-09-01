@@ -1,2 +1,1 @@
-# react-skeleton
-
+React page can be placed here.
