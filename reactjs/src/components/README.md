@@ -1,2 +1,1 @@
-# react-skeleton
-
+Custom components can be placed here
