@@ -12,8 +12,6 @@ module.exports = {
   coveragePathIgnorePatterns: [
     '/node_modules/',
     '/src/services/',
-    '/src/helpers/',
-    '/src/actions/',
     '/src/models/',
     '/src/transformers/__mock__/',
   ],
