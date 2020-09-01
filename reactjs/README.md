@@ -20,7 +20,7 @@ The project includes a live-reloading static server on port `3003` (you can chan
 
 1. Project will be configured to reject any git commit which violates 95% lines code coverage via unit test.
 
-2. All files under `src\transformers` & `src\store\reducers` folders must have unit tests under `__test__` & mock API response under `__mock__` folder.
+2. All files under `src\transformers` folder must have unit tests under `__test__` & mock API response under `__mock__` folder.
 
 3. Run `npm test` or use `jest` plugin to run/debug unit tests.
 
