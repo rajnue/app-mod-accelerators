@@ -4,3 +4,5 @@ Repository for App Mod Accelerators. The accelerators are supposed to be tech ar
 
 - Guidelines
 - Starter project template (s)
+
+Please DO NOT merge individual branches to master/main. Individual accelerators are supposed to reside under their own branches.
