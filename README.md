@@ -1,6 +1,6 @@
-# app-mod-accelerators
+# .Net Core Accelerator
 
-Repository for App Mod Accelerators. The accelerators are supposed to be tech area specific, residing under different branches of this repository. An accelerator will have 
+Choose the template from below 
+- https://github.com/ardalis/CleanArchitecture
+- https://github.com/jasontaylordev/CleanArchitecture
 
-- Guidelines
-- Starter project template (s)
