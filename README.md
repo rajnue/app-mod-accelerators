@@ -1,4 +1,4 @@
-# app-mod-accelerators
+# App Mod Accelerators
 
 Repository for App Mod Accelerators. The accelerators are supposed to be tech area specific, residing under different branches of this repository. An accelerator will have 
 
