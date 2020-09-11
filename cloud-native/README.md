@@ -1,8 +1,11 @@
 # Cloud native Devops AppMode Initiative
 
-## Branching strategy
+## Reference solutions
+- dotnet core - [docs](src/dotnet/README.md)
+
+### Branching strategy
 
 Default branch - `cloud-native`
 
-Any Pull-request to the cloud-native initiative should happen from a child branch - `cn/*`
+For any Pull request to the cloud-native initiative - use child branch with convention - `cn/*`
   e.g - `cn/adding-k8s-manifest`
