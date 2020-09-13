@@ -1,0 +1,274 @@
+{
+  "states": [
+    {
+      "id": "1",
+      "name": "Karnataka"
+    },
+    {
+      "id": "2",
+      "name": "MP"
+    },
+    {
+      "id": "3",
+      "name": "UP"
+    },
+    {
+      "id": "4",
+      "name": "Goa"
+    },
+    {
+      "id": "5",
+      "name": "Gujarat"
+    },
+    {
+      "id": "6",
+      "name": "Maharashtra"
+    },
+    {
+      "id": "7",
+      "name": "Kerla"
+    },
+    {
+      "id": "8",
+      "name": "Telangana"
+    }
+  ],
+  "cities": [
+    {
+      "id": "1",
+      "name": "Bangalore"
+    },
+    {
+      "id": "2",
+      "name": "Mumbai"
+    },
+    {
+      "id": "3",
+      "name": "Chennai"
+    },
+    {
+      "id": "4",
+      "name": "Kolkata"
+    },
+    {
+      "id": "5",
+      "name": "Delhi"
+    },
+    {
+      "id": "6",
+      "name": "Hydrabad"
+    }
+  ],
+  "diagnosis": [
+    {
+      "id": 8,
+      "fullname": "Sahjad",
+      "address": "asdf",
+      "city": "Bangalore",
+      "state": "Karnataka",
+      "mobileno": "1234567890",
+      "status": "Positive",
+      "lab": "Lab011"
+    },
+    {
+      "id": 9,
+      "fullname": "Vikram",
+      "address": "ECity",
+      "city": "Bangalore",
+      "state": "Karnataka",
+      "mobileno": "1212121211211",
+      "status": "Positive",
+      "lab": "NewLab-01"
+    },
+    {
+      "id": 10,
+      "fullname": "Patient12",
+      "address": "test",
+      "city": "Bangalore",
+      "state": "Karnataka",
+      "mobileno": "1234567890",
+      "status": "Negative",
+      "lab": "Lab011"
+    },
+    {
+      "id": 11,
+      "fullname": "XYx",
+      "address": "abc address",
+      "city": "Bangalore",
+      "state": "Karnataka",
+      "mobileno": "1212111111",
+      "status": "Negative",
+      "lab": "ZYZ Lab"
+    }
+  ],
+  "Lab": [
+    {
+      "id": 27,
+      "name": "NewLab-01",
+      "licensecode": "asdqwq",
+      "city": "Hydrabad",
+      "state": "UP"
+    },
+    {
+      "id": 28,
+      "name": "Lab011",
+      "licensecode": "121212121",
+      "city": "Mumbai",
+      "state": "Maharashtra"
+    },
+    {
+      "id": 29,
+      "name": "KD0011",
+      "licensecode": "12212111",
+      "city": "Hydrabad",
+      "state": "Telangana"
+    },
+    {
+      "id": 30,
+      "name": "asfasdf",
+      "licensecode": "asdfasdf",
+      "city": "Mumbai",
+      "state": "UP"
+    },
+    {
+      "id": 31,
+      "name": "IP11101Lab",
+      "licensecode": "12121211",
+      "city": "Bangalore",
+      "state": "Karnataka"
+    },
+    {
+      "id": 32,
+      "name": "sdafasdf",
+      "licensecode": "asdfads",
+      "city": "Bangalore",
+      "state": "MP"
+    },
+    {
+      "id": 33,
+      "name": "asdf",
+      "licensecode": "asdfasdf",
+      "city": "Bangalore",
+      "state": "MP"
+    },
+    {
+      "id": 34,
+      "name": "asdf",
+      "licensecode": "asdfasdf",
+      "city": "Bangalore",
+      "state": "UP"
+    },
+    {
+      "id": 35,
+      "name": "asdf",
+      "licensecode": "asdfasdf",
+      "city": "Mumbai",
+      "state": "Karnataka"
+    },
+    {
+      "id": 36,
+      "name": "afasdf",
+      "licensecode": "asdfasd",
+      "city": "Mumbai",
+      "state": "MP"
+    },
+    {
+      "id": 37,
+      "name": "assdf",
+      "licensecode": "asdfasdf",
+      "city": "Bangalore",
+      "state": "MP"
+    },
+    {
+      "id": 38,
+      "name": "asdfas",
+      "licensecode": "asdfasdf",
+      "city": "Mumbai",
+      "state": "Karnataka"
+    },
+    {
+      "id": 39,
+      "name": "asdf",
+      "licensecode": "asdfasd",
+      "city": "Bangalore",
+      "state": "MP"
+    },
+    {
+      "id": 40,
+      "name": "asdf",
+      "licensecode": "asdfasd",
+      "city": "Mumbai",
+      "state": "MP"
+    },
+    {
+      "id": 41,
+      "name": "asdf",
+      "licensecode": "asdfasd",
+      "city": "Bangalore",
+      "state": "Karnataka"
+    },
+    {
+      "id": 42,
+      "name": "asdfads",
+      "licensecode": "asdfasdf",
+      "city": "Mumbai",
+      "state": "Karnataka"
+    },
+    {
+      "id": 43,
+      "name": "asdfads",
+      "licensecode": "asdfasdf",
+      "city": "Mumbai",
+      "state": "Karnataka"
+    },
+    {
+      "id": 44,
+      "name": "Lab-013",
+      "licensecode": "121211",
+      "city": "Bangalore",
+      "state": "Karnataka"
+    },
+    {
+      "id": 45,
+      "name": "Test11",
+      "licensecode": "11111",
+      "city": "Bangalore",
+      "state": "Maharashtra"
+    },
+    {
+      "id": 46,
+      "name": "asdf",
+      "licensecode": "asdfas",
+      "city": "Mumbai",
+      "state": "Maharashtra"
+    },
+    {
+      "id": 47,
+      "name": "Raj Sharma",
+      "licensecode": "121211",
+      "city": "Bangalore",
+      "state": "Karnataka"
+    },
+    {
+      "id": 48,
+      "name": "ABC Lab",
+      "licensecode": "ABC001",
+      "city": "Chennai",
+      "state": "Kerla"
+    },
+    {
+      "id": 49,
+      "name": "ZYZ Lab",
+      "licensecode": "XYZ0001",
+      "city": "Bangalore",
+      "state": "Karnataka"
+    },
+    {
+      "id": 50,
+      "name": "test",
+      "licensecode": "testeee",
+      "city": "Bangalore",
+      "state": "Karnataka"
+    }
+  ]
+}

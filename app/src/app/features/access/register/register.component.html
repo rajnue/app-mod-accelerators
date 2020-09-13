@@ -1,0 +1,108 @@
+<div class="container">
+    <div class="card" [hidden]="submitted">
+        <h4 class="card-header">User Registration</h4>
+        <div class="card-body">
+            <form (ngSubmit)="regform.form.valid && onRegister(regform)" #regform="ngForm" >
+                <div class="row">
+                    <div class="form-group col">
+                        <label for="fname">First Name</label>
+                        <input type="text" [(ngModel)]="model.fname" #fname="ngModel" 
+                            class="form-control" id="fname"
+                            name="fname" required placeholder="Enter First Name">
+                        <div [hidden]="fname.valid || fname.pristine" class="alert alert-danger">
+                            First Name is required
+                        </div>
+                    </div>
+                    <div class="form-group col">
+                        <label for="lname">Last Name</label>
+                        <input type="text" class="form-control" id="lname" 
+                        [(ngModel)]=model.lname #lname="ngModel"
+                            name="lname" required placeholder="Enter Last Name">
+                        <div [hidden]="lname.valid || lname.pristine" class="alert alert-danger">
+                            Last Name is required
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col">
+                        <label for="lab">Lab</label>
+                        <select id="lab" name="lab" [(ngModel)]=model.lab #lab="ngModel" required 
+                        class="form-control">
+                            <option *ngFor="let lb of labs" [value]="lb.id">{{lb.name}}</option>
+                        </select>
+                        <div [hidden]="lab.valid || lab.pristine" class="alert alert-danger">
+                            Lab is required
+                        </div>
+                    </div>
+                    <div class="form-group col">
+                        <label for="userid">User ID</label>
+                        <input type="text" class="form-control" id="userid" 
+                        name="userid" [(ngModel)]=model.userid
+                            #userid="ngModel" required placeholder="Enter User ID">
+                        <div [hidden]="userid.valid || userid.pristine" class="alert alert-danger">
+                            User-ID is required
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="form-group col">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" [(ngModel)]=model.password
+                        #password="ngModel" required name="password" id="password" placeholder="Enter Password" >
+                        <div [hidden]="password.valid || password.pristine" class="alert alert-danger">
+                                Password is required
+                        </div>
+                        {{confirmpassword.valid}}
+                    </div>
+                    <div class="form-group col">
+                        <label for="confirmpassword">Confirm Password</label>
+                        <input type="password" class="form-control" id="confirmpassword" [(ngModel)]=model.confirmpassword 
+                        #confirmpassword="ngModel" required name="confirmpassword"  placeholder="Enter Confirm Password">
+                        <div [hidden]="confirmpassword.valid || confirmpassword.pristine" class="alert alert-danger">
+                                Confirm Password is required
+                        </div>
+                       
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="form-group col">
+                        <label for="emailid">Email-ID</label>
+                        <input type="email" class="form-control" id="emailid" placeholder="Enter Email ID">
+                    </div>
+                    <div class="form-group col">
+                        <label for="mobileno">Mobile No</label>
+                        <input type="text" class="form-control" id="mobileno" [(ngModel)]="model.mobileno" #mobileno="ngModel"
+                         placeholder="Enter Mobile No" required name="mobileno"
+                         phoneValidateDirective> 
+                    </div>
+                    <!--<div [hidden]="mobileno.valid || mobileno.pristine" class="alert alert-danger">
+                        Mobile No is required
+                    </div>-->
+                    <div *ngIf="(mobileno.touched || mobileno.dirty) && mobileno.errors?.phoneNumberInvalid" class="alert alert-danger">
+                        Phone number must be of 10 digit
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col">
+                        <label for="address">Address</label>
+                        <input type="text" class="form-control" id="address" placeholder="Enter Address">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col">
+                        <div class="btn-group">
+                            <button type="submit" class="btn btn-primary">Register</button>
+                            <button type="reset" class=" btn btn-danger">Reset</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="signin">
+                    <p>Already have an account? <a routerLink="/access/login">Sign in</a>.</p>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>

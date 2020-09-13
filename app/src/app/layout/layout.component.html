@@ -1,0 +1,8 @@
+<div class="container">
+        <app-adminheader *ngIf="isAdmin && !noAccess" [logOnUser]="logonuser"></app-adminheader>
+        <app-diagnosisheader *ngIf="!isAdmin && !noAccess" [logOnUser]="logonuser"></app-diagnosisheader>
+        <app-noheader *ngIf="noAccess"></app-noheader>
+        <router-outlet></router-outlet>
+        <br/><br/>
+        <app-footer></app-footer>
+</div>

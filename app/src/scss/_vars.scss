@@ -1,0 +1,9 @@
+
+$bgcolor:green;
+
+/*SASS Map**/
+$validation-color:(
+    border-left-valid: 5px solid #42A948, /* green */
+    border-left-invalid: 5px solid #a94442, /* red */
+    border-color: #dc3545
+);
