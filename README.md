@@ -29,3 +29,16 @@ Angular Accelerators
 - AOT Build
 - Containerization - Docker
 
+
+### How to start locally
+#### Install packages
+- npm install
+
+#### Start local Json DB (Go inside "app" folder)
+- json-server --watch db.json
+
+#### Now, all set and we can start application, by using command
+- ng serve 
+
+#### For environment(dev, staging(itg), production) specific command
+- ng serve -c=itg  
