@@ -23,8 +23,9 @@ FROM node:12-alpine as production
 ENV NODE_ENV=production
 WORKDIR /app
 # we just need dist folder and node_modules to execute the command
-COPY --from=build src/dist /app
-COPY --from=production-build src/node_modules /app/node_modules
-USER node
+COPY --chown=node:node --from=build src/dist /app
+COPY --chown=node:node --from=production-build src/node_modules /app/node_modules
 EXPOSE 4002
+RUN chown -R node: /app
+USER node
 CMD ["node","index.js"]
