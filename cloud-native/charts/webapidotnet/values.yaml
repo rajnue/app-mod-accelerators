@@ -1,65 +1,52 @@
-# Default values for webapidotnet.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
 fullnameOverride: webapidotnet
-replicaCount: 1
+
 image:
-  repository: webapidotnet
-  tag: stable
+  repository: anujsehgal/neuappmod-dotnet-webapi
+  tag: "1.0"
   pullPolicy: IfNotPresent
-imagePullSecrets: []
-  # Optionally specify an array of imagePullSecrets.
-  # Secrets must be manually created in the namespace.
-  # ref: https://kubernetes.io/docs/concepts/containers/images/#specifying-imagepullsecrets-on-a-pod
-  #
-  # This uses credentials from secret "myRegistryKeySecretName".
-  # - name: myRegistryKeySecretName
+
 service:
   type: ClusterIP
-  port: 80
+  port: 8080
 
 probes:
-  enabled: false
+  readinessProbe:
+    enabled: false
+    endpoint: /
+    initialDelaySeconds: 5
+    timeoutSeconds: 20
+    periodSeconds: 10
+
+  livenessProbe:
+    enabled: false
+    endpoint: /
+    initialDelaySeconds: 5
+    timeoutSeconds: 20
+    periodSeconds: 10
 
 ingress:
-  enabled: false
+  enabled: true
   annotations:
-    # kubernetes.io/tls-acme: "true"
+    kubernetes.io/ingress.class: traefik
   path: /
-  # hosts:
-  #   - chart-example.local
-  tls: []
-    # - secretName: chart-example-tls
-    #   hosts:
-    #     - chart-example.local
-configmapEnv: {}
-  # Optionally specify a set of configurations
-  # will be injected as environment variables by default.
-secrets: {}
-  # Optionally specify a set of secret objects whose values
-  # will be injected as environment variables by default.
-  # You should add this section to a file like secrets.yaml
-  # that is explicitly NOT committed to source code control
-  # and then include it as part of your helm install step.
-  # ref: https://kubernetes.io/docs/concepts/configuration/secret/
-  #
-  # This creates a secret "mysecret" and injects "mypassword"
-  # as the environment variable mysecret_mypassword=password.
-  # mysecret:
-  #   mypassword: password
-resources: {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #  cpu: 100m
-  #  memory: 128Mi
-  # requests:
-  #  cpu: 100m
-  #  memory: 128Mi
-nodeSelector: {}
+  
+configmapEnv: 
+  ASPNETCORE_URLS: "http://*:8080"
+  ASPNETCORE_ENVIRONMENT: "Docker"
 
-tolerations: []
+resources:
+  limits:
+    cpu: 300m
+    memory: 500Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
 
-affinity: {}
+autoscale:
+  enabled: true
+  minReplicas: 1
+  maxReplicas: 5
+  cpu:
+    targetAverageUtilization: 40
+  memory:
+    targetAverageValue: 200Mi
