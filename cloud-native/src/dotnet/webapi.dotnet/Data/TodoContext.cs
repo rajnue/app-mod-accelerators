@@ -1,19 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+﻿using MongoDB.Driver;
+using webapi.dotnet.Configuration;
 using webapi.dotnet.Models;
 
 namespace webapi.dotnet.Data
 {
-    public class TodoContext : DbContext
+    public class TodoContext : ITodoContext
     {
-        public TodoContext(DbContextOptions<TodoContext> options)
-            : base(options)
+        private readonly IMongoDatabase _db;
+        public TodoContext(MongoDbConfig config)
         {
+            var client = new MongoClient(config.ConnectionString);
+            _db = client.GetDatabase(config.Database);
         }
-
-        public DbSet<TodoItem> TodoItems { get; set; }
+        public IMongoCollection<TodoItem> Todos => _db.GetCollection<TodoItem>("Todos");
     }
 }
