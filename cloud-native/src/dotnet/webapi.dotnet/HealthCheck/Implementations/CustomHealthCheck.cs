@@ -14,11 +14,11 @@ namespace webapi.dotnet.HealthCheck.Implementations
             if (healthCheckResultHealthy)
             {
                 return Task.FromResult(
-                    HealthCheckResult.Healthy("A healthy result."));
+                    HealthCheckResult.Healthy("Custom healthcheck success"));
             }
 
             return Task.FromResult(
-                HealthCheckResult.Unhealthy("An unhealthy result."));
+                HealthCheckResult.Unhealthy("Custom healthcheck failed"));
         }
     }
 }

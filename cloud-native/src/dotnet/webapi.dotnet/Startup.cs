@@ -15,6 +15,7 @@ using webapi.dotnet.HealthCheck;
 using webapi.dotnet.Service;
 using webapi.dotnet.HealthCheck.Implementations;
 
+
 namespace webapi.dotnet
 {
     public class Startup
@@ -40,20 +41,20 @@ namespace webapi.dotnet
 
             services.AddControllers();
 
-            //services.AddHealthChecksUI();
-
             services.AddHealthChecks()
-                .AddCheck<CustomHealthCheck>("MongoDB")
+                .AddCheck<CustomHealthCheck>("Custom-check")
                 .AddMongoDb(mongodbConnectionString: config.MongoDB.ConnectionString,
-                        name: "mongo",
+                        name: "MongoDB",
                         failureStatus: HealthStatus.Unhealthy);
+
+            //services.AddHealthChecksUI();
 
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(c => {
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v1",
-                    Title = "ToDo API",
+                    Title = "Cloud Native Neudesic App Mode ToDo API",
                     Description = "Neudesic App Mode - .net core TODO Web API",
                 });
             });
@@ -69,6 +70,7 @@ namespace webapi.dotnet
 
             HealthCheckOptions customOptions = new HealthCheckOptions
             {
+                Predicate = _ => true,
                 ResponseWriter = async (context, report) =>
                 {
                     context.Response.ContentType = "application/json";
@@ -89,9 +91,15 @@ namespace webapi.dotnet
                 }
             };
 
+            app.UseHealthChecks("/health", new HealthCheckOptions {  Predicate = _ => false });
+
             // Endpoints for Healthprobes - liveness and readiness
-            app.UseHealthChecks("/healthz/readiness", customOptions);
-            app.UseHealthChecks("/healthz/liveness", customOptions);
+            app.UseHealthChecks("/health/readiness", customOptions);
+
+            // Endpoints for Healthprobes - liveness and readiness
+            app.UseHealthChecks("/health/liveness", customOptions);
+
+            //app.UseHealthChecksUI();
 
             // Enable middleware to serve generated Swagger as a JSON endpoint.
             app.UseSwagger();
