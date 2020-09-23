@@ -19,7 +19,7 @@ docker-compose up --build
 
 This will open the application in the port number provided in the `.env` file as `DOTNET_API_PORT`.
 
-Open `http://localhost:$DOTNET_API_PORT/swagger-ui`
+Open `http://localhost:$DOTNET_API_PORT/swagger/`
 
 ## Docker Image Lifecycle
 
@@ -34,12 +34,10 @@ docker push neuappmode/webapi:dev
 
 Running docker container
 ```
-docker run -p 3005:8080 -e ASPNETCORE_URLS=http://*:8080 \
-           -e ASPNETCORE_ENVIRONMENT="Docker" \
-           neuappmode/webapi:dev
+docker run -p 3005:8080 -e ASPNETCORE_URLS=http://*:8080 -e ASPNETCORE_ENVIRONMENT="Docker" neuappmode/webapi:dev
 ```
 
-Open `http://localhost:3005/swagger-ui`
+Open `http://localhost:3005/swagger`
 
 
 ## Using Visual Studio
