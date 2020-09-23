@@ -55,7 +55,7 @@ namespace webapi.dotnet.Controllers
 
         // PUT: api/TodoItems/5
         /// <summary>
-        /// Create an Item
+        /// Update an Item
         /// </summary>
         /// <param name="id"></param>
         /// <param name="todoItem"></param>
@@ -81,7 +81,7 @@ namespace webapi.dotnet.Controllers
 
         // POST: api/TodoItems
         /// <summary>
-        /// Update Item 
+        /// Create new Item 
         /// </summary>
         /// <param name="todoItem"></param>
         /// <returns></returns>

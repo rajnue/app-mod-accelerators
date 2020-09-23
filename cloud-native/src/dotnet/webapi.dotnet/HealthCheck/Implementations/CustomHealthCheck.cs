@@ -2,7 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace webapi.dotnet.HealthCheck
+namespace webapi.dotnet.HealthCheck.Implementations
 {
     public class CustomHealthCheck : IHealthCheck
     {

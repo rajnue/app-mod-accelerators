@@ -13,6 +13,7 @@ using webapi.dotnet.Configuration;
 using webapi.dotnet.Data;
 using webapi.dotnet.HealthCheck;
 using webapi.dotnet.Service;
+using webapi.dotnet.HealthCheck.Implementations;
 
 namespace webapi.dotnet
 {

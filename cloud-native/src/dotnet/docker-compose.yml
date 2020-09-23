@@ -7,10 +7,15 @@ services:
       context: ./webapi.dotnet
       dockerfile: Dockerfile
     ports:
-      - ${DOTNET_API_PORT:-5006}:8080
+      - 5006:8080
     environment:
-      - ASPNETCORE_URLS=http://*:8080
-      - ASPNETCORE_ENVIRONMENT="Docker"
+      ASPNETCORE_URLS: http://*:8080
+      ASPNETCORE_ENVIRONMENT: Docker
+      MongoDB__Database: TodoDB
+      MongoDB__Host: mongo
+      MongoDB__Port: 27017
+      MongoDB__User: root
+      MongoDB__Password: example
     depends_on:
       - mongo
 
