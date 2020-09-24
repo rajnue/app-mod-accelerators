@@ -7,18 +7,20 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using webapi.dotnet.Data;
 using webapi.dotnet.Models;
+using webapi.dotnet.Service;
 
 namespace webapi.dotnet.Controllers
 {
+    [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
     public class TodoItemsController : ControllerBase
     {
-        private readonly TodoContext _context;
+        private readonly ITodoItemService _todoService;
 
-        public TodoItemsController(TodoContext context)
+        public TodoItemsController(ITodoItemService todoService)
         {
-            _context = context;
+            _todoService = todoService;
         }
 
         // GET: api/TodoItems
@@ -29,7 +31,7 @@ namespace webapi.dotnet.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<TodoItem>>> GetTodoItems()
         {
-            return await _context.TodoItems.ToListAsync();
+            return new ObjectResult(await _todoService.GetAllTodos());
         }
 
         // GET: api/TodoItems/5
@@ -41,19 +43,19 @@ namespace webapi.dotnet.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<TodoItem>> GetTodoItem(long id)
         {
-            var todoItem = await _context.TodoItems.FindAsync(id);
+            var todoItem = await _todoService.GetTodo(id);
 
             if (todoItem == null)
             {
                 return NotFound();
             }
 
-            return todoItem;
+            return new ObjectResult(todoItem);
         }
 
         // PUT: api/TodoItems/5
         /// <summary>
-        /// Create an Item
+        /// Update an Item
         /// </summary>
         /// <param name="id"></param>
         /// <param name="todoItem"></param>
@@ -61,45 +63,39 @@ namespace webapi.dotnet.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutTodoItem(long id, TodoItem todoItem)
         {
-            if (id != todoItem.Id)
+            if (todoItem == null || (todoItem != null && id != todoItem.Id))
             {
                 return BadRequest();
             }
 
-            _context.Entry(todoItem).State = EntityState.Modified;
+            var todoFromDb = await _todoService.GetTodo(id);
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!TodoItemExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            if (todoFromDb == null)
+                return new NotFoundResult();
 
-            return NoContent();
+            todoItem.Id = todoFromDb.Id;
+            todoItem.InternalId = todoFromDb.InternalId;
+            await _todoService.Update(todoItem);
+            return new OkObjectResult(todoItem);
         }
 
         // POST: api/TodoItems
         /// <summary>
-        /// Update Item 
+        /// Create new Item 
         /// </summary>
         /// <param name="todoItem"></param>
         /// <returns></returns>
         [HttpPost]
         public async Task<ActionResult<TodoItem>> PostTodoItem(TodoItem todoItem)
         {
-            _context.TodoItems.Add(todoItem);
-            await _context.SaveChangesAsync();
+            if (todoItem == null)
+            {
+                return BadRequest();
+            }
 
-            return CreatedAtAction("GetTodoItem", new { id = todoItem.Id }, todoItem);
+            todoItem.Id = await _todoService.GetNextId();
+            await _todoService.Create(todoItem);
+            return new OkObjectResult(todoItem);
         }
 
         // DELETE: api/TodoItems/5
@@ -111,21 +107,12 @@ namespace webapi.dotnet.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<TodoItem>> DeleteTodoItem(long id)
         {
-            var todoItem = await _context.TodoItems.FindAsync(id);
-            if (todoItem == null)
-            {
-                return NotFound();
-            }
-
-            _context.TodoItems.Remove(todoItem);
-            await _context.SaveChangesAsync();
-
-            return todoItem;
+            var post = await _todoService.GetTodo(id);
+            if (post == null)
+                return new NotFoundResult();
+            await _todoService.Delete(id);
+            return new OkResult();
         }
 
-        private bool TodoItemExists(long id)
-        {
-            return _context.TodoItems.Any(e => e.Id == id);
-        }
     }
 }
