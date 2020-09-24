@@ -35,6 +35,8 @@ namespace webapi.dotnet
             var todoService = new TodoItemService(todoContext);
             services.AddSingleton<ITodoItemService>(todoService);
 
+            services.AddRouting(options => options.LowercaseUrls = true);
+
             services.AddControllers();
 
             services.AddHealthChecks()
