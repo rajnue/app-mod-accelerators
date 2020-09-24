@@ -1,20 +1,16 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using Newtonsoft.Json;
-using System.Linq;
 using webapi.dotnet.Configuration;
 using webapi.dotnet.Data;
 using webapi.dotnet.HealthCheck;
-using webapi.dotnet.Service;
 using webapi.dotnet.HealthCheck.Implementations;
-
+using webapi.dotnet.Service;
 
 namespace webapi.dotnet
 {
@@ -42,20 +38,23 @@ namespace webapi.dotnet
             services.AddControllers();
 
             services.AddHealthChecks()
-                .AddCheck<CustomHealthCheck>("Custom-check")
+                .AddCheck<CustomHealthCheck>("Custom-healthcheck", tags: new[] { "readiness", "liveness"})
                 .AddMongoDb(mongodbConnectionString: config.MongoDB.ConnectionString,
                         name: "MongoDB",
-                        failureStatus: HealthStatus.Unhealthy);
+                        failureStatus: HealthStatus.Unhealthy,
+                        tags: new[] { "readiness", "liveness" });
 
-            //services.AddHealthChecksUI();
+            // Register Health check UI Dashboard
+            // services.AddHealthChecksUI()
+                        //.AddInMemoryStorage();
 
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(c => {
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v1",
-                    Title = "Cloud Native Neudesic App Mode ToDo API",
-                    Description = "Neudesic App Mode - .net core TODO Web API",
+                    Title = "Cloud Native - Neudesic App Mode ToDo API",
+                    Description = "Cloud Native - Neudesic App Mode Initiative",
                 });
             });
         }
@@ -68,39 +67,24 @@ namespace webapi.dotnet
                 app.UseDeveloperExceptionPage();
             }
 
-            HealthCheckOptions customOptions = new HealthCheckOptions
+            // Ping healthcheck endpoint
+            app.UseHealthChecks("/health", new HealthCheckOptions {  Predicate = _ => true });
+
+            // Endpoints for Healthprobes - readiness
+            app.UseHealthChecks("/health/readiness", new HealthCheckOptions
             {
-                Predicate = _ => true,
-                ResponseWriter = async (context, report) =>
-                {
-                    context.Response.ContentType = "application/json";
+                Predicate = reg => reg.Tags.Contains("readiness"),
+                ResponseWriter = ExtendedHealthCheckOptions.Options.ResponseWriter
+            });
 
-                    var response = new HealthCheckResponse
-                    {
-                        Status = report.Status.ToString(),
-                        Checks = report.Entries.Select(x => new HealthCheckItem
-                        {
-                            Component = x.Key,
-                            Status = x.Value.Status.ToString(),
-                            Description = x.Value.Description
-                        }),
-                        Duration = report.TotalDuration
-                    };
-
-                    await context.Response.WriteAsync(JsonConvert.SerializeObject(response));
-                }
-            };
-
-            app.UseHealthChecks("/health", new HealthCheckOptions {  Predicate = _ => false });
-
-            // Endpoints for Healthprobes - liveness and readiness
-            app.UseHealthChecks("/health/readiness", customOptions);
-
-            // Endpoints for Healthprobes - liveness and readiness
-            app.UseHealthChecks("/health/liveness", customOptions);
+            // Endpoints for Healthprobes - liveness
+            app.UseHealthChecks("/health/liveness", new HealthCheckOptions
+            {
+                Predicate = reg => reg.Tags.Contains("liveness"),
+                ResponseWriter = ExtendedHealthCheckOptions.Options.ResponseWriter
+            });
 
             //app.UseHealthChecksUI();
-
             // Enable middleware to serve generated Swagger as a JSON endpoint.
             app.UseSwagger();
 
@@ -120,7 +104,6 @@ namespace webapi.dotnet
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-                //endpoints.MapHealthChecksUI();
             });
         }
     }
