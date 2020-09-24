@@ -12,5 +12,7 @@ namespace webapi.dotnet.HealthCheck
         public string Component { get; set; }
 
         public string Description { get; set; }
+
+        public TimeSpan Duration { get; set; }
     }
 }
