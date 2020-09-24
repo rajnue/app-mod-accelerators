@@ -1,0 +1,19 @@
+#run namespace.yaml before running this directly
+#Read QoC.docx to know more about it
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: qos-besteffort
+  namespace: qos-example
+spec:
+  containers:
+  - name: qos-guaranteed-pod
+    image: nginx
+    resources:
+      limits:
+        memory: "200Mi"
+        cpu: "700m"
+      requests:
+        memory: "200Mi"
+        cpu: "700m"

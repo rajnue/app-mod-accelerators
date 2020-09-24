@@ -1,0 +1,13 @@
+# Not recommended, especially in production
+#run namespace.yaml before running this directly
+#Read QoC.docx to know more about it
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: qos-besteffort
+  namespace: qos-example
+spec:
+  containers:
+  - name: qos-besteffort-pod
+    image: nginx

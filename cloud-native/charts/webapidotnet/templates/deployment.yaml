@@ -1,4 +1,5 @@
-apiVersion: apps/v1beta2
+{{- $servicePort := .Values.service.port -}}
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ template "webapidotnet.fullname" . }}
@@ -9,7 +10,7 @@ metadata:
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 spec:
-  replicas: {{ .Values.replicaCount }}
+  replicas: {{ .Values.autoscale.minReplicas }}
   selector:
     matchLabels:
       app: {{ template "webapidotnet.name" . }}
@@ -23,24 +24,37 @@ spec:
       annotations:
         buildID: {{ .Values.buildID | default "" | quote }}
     spec:
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
-              containerPort: 80
+              containerPort: {{ $servicePort }}
               protocol: TCP
-          {{- if .Values.probes.enabled }}
+          {{- if .Values.probes.livenessProbe.enabled }}
           livenessProbe:
             httpGet:
-              path: /
+              path: {{ .Values.probes.livenessProbe.endpoint }}
               port: http
+            initialDelaySeconds: {{ .Values.probes.livenessProbe.initialDelaySeconds }}
+            timeoutSeconds: {{ .Values.probes.livenessProbe.timeoutSeconds }}
+            periodSeconds: {{ .Values.probes.livenessProbe.periodSeconds }}
+            {{- end }}
+          {{- if .Values.probes.readinessProbe.enabled }}
           readinessProbe:
             httpGet:
-              path: /
+              path: {{ .Values.probes.readinessProbe.endpoint }}
               port: http
-          {{- end }}
+            initialDelaySeconds: {{ .Values.probes.readinessProbe.initialDelaySeconds }}
+            timeoutSeconds: {{ .Values.probes.readinessProbe.timeoutSeconds }}
+            periodSeconds: {{ .Values.probes.readinessProbe.periodSeconds }}
+          {{- end }}      
+          envFrom:
+            - configMapRef:
+                name: {{ template "webapidotnet.fullname" . }}
           env:
             {{- $root := . }}
             {{- range $ref, $values := .Values.secrets }}
