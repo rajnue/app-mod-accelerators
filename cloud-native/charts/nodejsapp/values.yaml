@@ -31,7 +31,7 @@ securityContext: {}
   # readOnlyRootFilesystem: true
   # runAsNonRoot: true
   # runAsUser: 1000
-
+secrets: {}
 service:
   type: ClusterIP
   port: 80
