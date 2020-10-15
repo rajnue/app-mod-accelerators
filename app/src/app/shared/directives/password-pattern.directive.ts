@@ -2,7 +2,6 @@ import { Directive } from '@angular/core';
 import { NG_VALIDATORS, Validator, AbstractControl } from '@angular/forms';
 import { CustomvalidationService } from '../../core/validations/password-validation';
 
-
 @Directive({
   selector: '[appPasswordPattern]',
   providers: [{ provide: NG_VALIDATORS, useExisting: PasswordPatternDirective, multi: true }]

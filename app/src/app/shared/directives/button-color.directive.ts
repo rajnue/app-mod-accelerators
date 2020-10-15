@@ -1,7 +1,7 @@
 import {Directive, ElementRef,  HostListener, Input, Renderer2, OnInit } from '@angular/core';
 
 @Directive({
-    selector: '[defualtCustomBgColor]'
+    selector: '[appDefualtCustomBgColor]'
 })
 export class ButtonColorDirective implements OnInit {
 

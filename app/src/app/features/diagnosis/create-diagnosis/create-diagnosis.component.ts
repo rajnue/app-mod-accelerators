@@ -122,23 +122,6 @@ export class CreateDiagnosisComponent implements OnInit {
       }
     });
   }
-
-  ngOnChanges(){
-    console.log(' ngOnChanges');
-  }
-  ngDoCheck(){
-    console.log('do check');
-  }
-  ngAfterContentChecked(){
-    console.log('after content checked');
-  }
-  ngAfterViewChecked(){
-    console.log('after view checked');
-  }
-  clickMe(){
-    console.log('link clicked');
-  }
-
   getDiagnosis(id: number) {
     this.diagnosisService.getDiagnoisById(id).subscribe(
       (patientDiagnois: IPatientDiagnois) => {
@@ -174,7 +157,7 @@ export class CreateDiagnosisComponent implements OnInit {
     if (this.patientDiagnois.id){
      this.diagnosisService.updateDiagnois(this.patientDiagnois)
           .subscribe(() => this.router.navigate(['/diagnosis/diagnosislist']),
-          (err) => (err) => this.handleError(err));
+          () => (err) => this.handleError(err));
     }
     else{
       this.diagnosisService.addDiagnois(this.patientDiagnois)

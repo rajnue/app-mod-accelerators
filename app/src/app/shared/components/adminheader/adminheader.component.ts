@@ -1,13 +1,13 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input } from '@angular/core';
 
-import { Router } from "@angular/router";
-import { AuthenticationService } from "../../../features/access/services/authentication.service";
-import { environment } from "../../../../environments/environment";
+import { Router } from '@angular/router';
+import { AuthenticationService } from '../../../features/access/services/authentication.service';
+import { environment } from '../../../../environments/environment';
 
 @Component({
-  selector: "app-adminheader",
-  templateUrl: "./adminheader.component.html",
-  styleUrls: ["./adminheader.component.scss"],
+  selector: 'app-adminheader',
+  templateUrl: './adminheader.component.html',
+  styleUrls: ['./adminheader.component.scss'],
 })
 export class AdminheaderComponent implements OnInit {
   @Input() logOnUser: string;
@@ -22,6 +22,6 @@ export class AdminheaderComponent implements OnInit {
 
   logout() {
     this.authenticationService.logout();
-    this.router.navigate(["/access/login"]);
+    this.router.navigate(['/access/login']);
   }
 }

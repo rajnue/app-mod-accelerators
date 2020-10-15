@@ -1,12 +1,12 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NoheaderComponent } from './noheader.component';
-/**
+
 describe('NoheaderComponent', () => {
   let component: NoheaderComponent;
   let fixture: ComponentFixture<NoheaderComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ NoheaderComponent ]
     })
@@ -19,8 +19,8 @@ describe('NoheaderComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  fit('should create', () => {
     expect(component).toBeTruthy();
   });
 });
- */
+

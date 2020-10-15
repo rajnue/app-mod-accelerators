@@ -42,7 +42,7 @@ export class LogEntry {
       let ret: string = params.join(',');
 
       // Is there at least one object in the array?
-      if (params.some(p => typeof p == 'object')) {
+      if (params.some(p => typeof p === 'object')) {
         ret = '';
         // Build comma-delimited string
         for (const item of params) {

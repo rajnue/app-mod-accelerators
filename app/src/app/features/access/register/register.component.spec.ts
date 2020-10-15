@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormBuilder } from '@angular/forms';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -19,9 +19,9 @@ describe('RegisterComponent', () => {
   let route: ActivatedRoute;
   let registrationService: RegistrationService;
   let logService: LogService;
-  let logPublishersService: LogPublishersService;
+  // let logPublishersService: LogPublishersService;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule, HttpClientModule, RouterTestingModule, SharedModule ],
       declarations: [ RegisterComponent ],
@@ -34,17 +34,17 @@ describe('RegisterComponent', () => {
     fixture = TestBed.createComponent(RegisterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-    router = TestBed.get(Router);
-    route = TestBed.get(ActivatedRoute);
-    logService = TestBed.get(LogService);
-    registrationService = TestBed.get(RegistrationService);
+    router = TestBed.inject(Router);
+    route = TestBed.inject(ActivatedRoute);
+    logService = TestBed.inject(LogService);
+    registrationService = TestBed.inject(RegistrationService);
   });
 
-  it('should create', () => {
+  fit('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  it('register user', () => {
+  fit('register user', () => {
     const value = {name: 'Raj', Address: 'sdfasdfsad'};
     const result = component.onRegister(value);
     expect(result).toEqual('Successful Register!!');

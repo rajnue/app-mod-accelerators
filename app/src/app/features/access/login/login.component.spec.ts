@@ -1,7 +1,7 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LoginComponent } from './login.component';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from '../services/authentication.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
@@ -16,11 +16,11 @@ describe('LoginComponent', () => {
   let route: ActivatedRoute;
   let router: Router;
   let authenticationService: AuthenticationService;
-  let page: LoginComponent;
+  // let page: LoginComponent;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, HttpClientModule, RouterTestingModule],
+      imports: [HttpClientTestingModule, HttpClientModule, RouterTestingModule, FormsModule, ReactiveFormsModule],
       declarations: [ LoginComponent ],
       providers: [AuthenticationService, FormBuilder]
     })
@@ -28,25 +28,34 @@ describe('LoginComponent', () => {
   }));
 
   beforeEach(() => {
-
     fixture = TestBed.createComponent(LoginComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
 
-    router = TestBed.get(Router);
-    route = TestBed.get(ActivatedRoute);
-    authenticationService = TestBed.get(AuthenticationService);
-    formBuilder = TestBed.get(FormBuilder);
+    router = TestBed.inject(Router);
+    route = TestBed.inject(ActivatedRoute);
+    authenticationService = TestBed.inject(AuthenticationService);
+    formBuilder = TestBed.inject(FormBuilder);
   });
 
-  it('should create', () => {
+  fit('should create', () => {
     expect(component).toBeTruthy();
   });
 
+  // f --> focus
+  fit('Login check async(async) with admin role', waitForAsync(() => {
+    const loginSpyOn = spyOn(authenticationService, 'login').withArgs('admin', 'admin').and.callThrough();
+    component.onSubmit();
+
+    fixture.whenStable().then((data) => {
+      fixture.detectChanges(); // For detecting changes on DOM elements
+      expect('Login Success').toContain('Login Success');
+    });
+  }));
 
   // f --> focus
-  fit('Login check async(async)', async(() => {
-    const loginSpyOn = spyOn(authenticationService, 'login').withArgs('admin', 'admin').and.callThrough();
+  fit('Login check async(async) with user role', waitForAsync(() => {
+    const loginSpyOn = spyOn(authenticationService, 'login').withArgs('user', 'user').and.callThrough();
     component.onSubmit();
 
     fixture.whenStable().then((data) => {

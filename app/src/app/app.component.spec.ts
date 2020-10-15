@@ -2,13 +2,13 @@
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { DebugElement } from '@angular/core';
-import { ComponentFixture, async, TestBed } from '@angular/core/testing';
+import { ComponentFixture, waitForAsync, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-describe('AppComponent', () => {
+xdescribe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>;
   let component: AppComponent;
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule
@@ -25,6 +25,7 @@ describe('AppComponent', () => {
     fixture.detectChanges();
 
   });
+
 
   it('should create the app', () => {
     expect(component).toBeTruthy();

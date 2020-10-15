@@ -3,9 +3,9 @@ import { Actions, Effect, ofType } from '@ngrx/effects';
 import { map, mergeMap, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
 
-
 import { LabService } from '../services/lab.service';
-import { LabActionTypes, LoadLabAction, LoadLabSuccessAction, LoadLabFailureAction, AddLabAction, AddLabSuccessAction, AddLabFailureAction, RemoveLabAction, RemoveLabSuccessAction, RemoveLabFailureAction } from './lab.actions';
+import { LabActionTypes, LoadLabAction, LoadLabSuccessAction, LoadLabFailureAction, AddLabAction, AddLabSuccessAction,
+AddLabFailureAction, RemoveLabAction, RemoveLabSuccessAction, RemoveLabFailureAction } from './lab.actions';
 
 
 @Injectable()

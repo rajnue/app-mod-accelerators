@@ -16,7 +16,7 @@ const appRoutes: Routes = [
       { path: 'home',  component: HomeComponent, canActivate: [AuthGuard] },
       { path: '', redirectTo: 'home', pathMatch: 'full'},
       { path: 'admin', loadChildren: () => import('./features/admin/admin.module').then(m => m.AdminModule) }, // lazy loading
-      { path: 'diagnosis', loadChildren: () => import('./features/diagnosis/diagnosis.module').then(m => m.DiagnosisModule) }, // lazy loading
+      { path: 'diagnosis', loadChildren: () => import('./features/diagnosis/diagnosis.module').then(m => m.DiagnosisModule) },
       { path: '**', component: PageNotFoundComponent}
     ]
   }

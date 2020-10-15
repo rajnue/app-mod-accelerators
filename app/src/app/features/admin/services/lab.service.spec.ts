@@ -1,4 +1,4 @@
-import { TestBed, async, inject } from '@angular/core/testing';
+import { TestBed, waitForAsync, inject } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { LabService } from './lab.service';
 import { environment } from '../../../../environments/environment';
@@ -17,12 +17,12 @@ describe('LabService', () => {
         ],
       });
 
-      labService = TestBed.get(LabService);
-      httpMock = TestBed.get(HttpTestingController);
+      labService = TestBed.inject(LabService);
+      httpMock = TestBed.inject(HttpTestingController);
     });
 
-    it(`should fetch labs as an Observable`, async(inject([HttpTestingController, LabService],
-      (httpClient: HttpTestingController, labService: LabService) => {
+    fit(`should fetch labs as an Observable`, waitForAsync(inject([HttpTestingController, LabService],
+      (httpClient: HttpTestingController, labServices: LabService) => {
 
         const labItem = [
             {
@@ -49,7 +49,7 @@ describe('LabService', () => {
         ];
 
 
-        labService.getLabs()
+        labServices.getLabs()
           .subscribe((labs: any) => {
             expect(labs.length).toBe(3);
           });

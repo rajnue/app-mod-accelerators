@@ -33,9 +33,9 @@ export class CreateLabComponent implements OnInit, OnDestroy {
   labstore$: Observable<ILab[]>;
   message: string;
   ifSuccess = false;
-  loading$: Observable<Boolean>;
+  loading$: Observable<boolean>;
   error$: Observable<string>;
-  private _subscription: Subscription;
+  private subscription: Subscription;
 
   constructor(private fb: FormBuilder,
               private route: ActivatedRoute,
@@ -164,15 +164,15 @@ export class CreateLabComponent implements OnInit, OnDestroy {
     this.mapFormValueToLabModel();
 
     if (this.lab.id){
-      this._subscription = this.labService.updateLab(this.lab)
+      this.subscription = this.labService.updateLab(this.lab)
           .subscribe(
             () => {this.message = 'Successfully Updated.'; this.ifSuccess = true; },
-            (err) => (err) => this.handleError(err)
+            () => (err) => this.handleError(err)
             );
     }
     else{
       this.store.dispatch(new AddLabAction(this.lab));
-      this._subscription = this.loading$.subscribe(data => {
+      this.subscription = this.loading$.subscribe(data => {
         if (!data) {
           this.message = 'Successfully Insterted.';
           this.ifSuccess = true;
@@ -224,7 +224,7 @@ export class CreateLabComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void{
-    this._subscription.unsubscribe();
+    this.subscription.unsubscribe();
   }
 
   logValidationErrors(group: FormGroup = this.labForm): void {

@@ -24,11 +24,7 @@ export class RegisterComponent implements OnInit {
   model = new Register();
 
   ngOnInit(): void {
-    this.labservice.getLabs()
-                  .subscribe(data => {
-                   this.labs = data,
-                   (err) => this.handleError(err);
-                  });
+    this.labservice.getLabs().subscribe(data => {this.labs = data; }, err => this.handleError(err));
   }
 
   handleError(err: string): void {

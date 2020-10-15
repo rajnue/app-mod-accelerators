@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CreateLabComponent } from './create-lab.component';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -17,17 +17,17 @@ import { LogPublishersService } from 'src/app/core/log-services/log-publishers.s
 xdescribe('CreateLabComponent', () => {
   let component: CreateLabComponent;
   let fixture: ComponentFixture<CreateLabComponent>;
-  let fb: FormBuilder;
+  // let fb: FormBuilder;
   let route: ActivatedRoute;
   let labService: LabService;
   let router: Router;
   let logService: LogService;
   let cityService: CityService;
-  let stateService: StateService;
-  let store: Store<AppState>;
-  let logPublishersService: LogPublishersService ;
+  // let stateService: StateService;
+  // let store: Store<AppState>;
+  // let logPublishersService: LogPublishersService ;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule, HttpClientModule, RouterTestingModule],
       declarations: [ CreateLabComponent ],
@@ -38,11 +38,11 @@ xdescribe('CreateLabComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(CreateLabComponent);
-    router = TestBed.get(Router);
-    route = TestBed.get(ActivatedRoute);
-    labService = TestBed.get(LabService);
-    logService = TestBed.get(LogService);
-    cityService = TestBed.get(CityService);
+    router = TestBed.inject(Router);
+    route = TestBed.inject(ActivatedRoute);
+    labService = TestBed.inject(LabService);
+    logService = TestBed.inject(LogService);
+    cityService = TestBed.inject(CityService);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

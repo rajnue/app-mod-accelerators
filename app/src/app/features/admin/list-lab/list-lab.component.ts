@@ -25,7 +25,7 @@ export class ListLabComponent implements OnInit {
   // labstore$: Observable<ILab[]>;
 
   labstore$: Observable<Array<ILab>>;
-  loading$: Observable<Boolean>;
+  loading$: Observable<boolean>;
   error$: Observable<string>;
 
   constructor(private labservice: LabService,
